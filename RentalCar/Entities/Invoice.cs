@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Globalization;
 
 namespace Entities
 {
@@ -16,5 +14,14 @@ namespace Entities
             this.tax = tax;
         }
 
+        public override string ToString()
+        {
+            return "Basic payment: " +
+                   basicPayment.ToString("F2", CultureInfo.InvariantCulture) +
+                   "\nTax: " +
+                   tax.ToString("F2", CultureInfo.InvariantCulture) +
+                   "\nTotal payment: " +
+                   totalPayment.ToString("F2", CultureInfo.InvariantCulture);
+        }
     }
 }
