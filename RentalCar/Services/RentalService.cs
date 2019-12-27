@@ -21,7 +21,8 @@ namespace Services
         {
             TimeSpan time = carRental.finish.Subtract(carRental.start);
 
-            double basicPayment = 0.0;
+            double basicPayment;
+
             if (time.TotalHours <= 12.0)
                 basicPayment = pricePerHour * Math.Ceiling(time.TotalHours);
             else
