@@ -1,6 +1,8 @@
-﻿namespace Services
+﻿using RentalCar.Services;
+
+namespace Services
 {
-    class BrazilTaxService
+    class BrazilTaxService : ITaxService
     {
         public double tax(double amount)
         {

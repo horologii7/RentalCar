@@ -1,4 +1,5 @@
 ﻿using Entities;
+using RentalCar.Services;
 using System;
 
 namespace Services
@@ -8,11 +9,12 @@ namespace Services
         public double pricePerHour { get; private set; }
         public double pricePerDay { get; private set; }
 
-        public BrazilTaxService _brazilTaxService = new BrazilTaxService();
-        public RentalService(double pricePerHour, double pricePerDay)
+        public ITaxService _taxService;
+        public RentalService(double pricePerHour, double pricePerDay, ITaxService taxService)
         {
             this.pricePerHour = pricePerHour;
             this.pricePerDay = pricePerDay;
+            _taxService = taxService;
         }
 
         public void processInvoice(CarRental carRental)
@@ -25,7 +27,7 @@ namespace Services
             else
                 basicPayment = pricePerDay * Math.Ceiling(time.TotalDays);
 
-            double tax = _brazilTaxService.tax(basicPayment);
+            double tax = _taxService.tax(basicPayment);
 
             carRental.invoice = new Invoice(basicPayment, tax);         
         }

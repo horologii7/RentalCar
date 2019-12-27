@@ -21,7 +21,7 @@ namespace RentalCar
             double hour = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("Enter price per day: ");
             double day = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-            RentalService rentalService = new RentalService(hour, day);
+            RentalService rentalService = new RentalService(hour, day, new BrazilTaxService());
             rentalService.processInvoice(carRental);
             Console.WriteLine("INVOICE: ");
             Console.WriteLine(carRental.invoice);
